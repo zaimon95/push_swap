@@ -1,0 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sla-gran <sla-gran@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/01 11:34:25 by sla-gran          #+#    #+#             */
+/*   Updated: 2025/12/01 11:34:25 by sla-gran         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
+
+#include "libft/libft.h"
+
+typedef struct s_stack {
+	int			content;
+	struct s_stack	*next;
+}				t_stack;
+
+#endif
