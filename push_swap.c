@@ -12,56 +12,65 @@
 
 #include "push_swap.h"
 
-t_stack	*swap(t_stack *a)
+t_list	*swap(t_list *a)
 {
-	t_stack *tmp;
+	t_list	*tmp;
 
-	if(a && a->next)
+	if (a && a->next)
 	{
 		tmp = a->next;
-		a->next = a->next->next;
+		a->next = tmp->next;
 		tmp->next = a;
 		a = tmp;
 	}
 	return (a);
 }
 
-t_stack	*push(t_stack *a, t_stack *b)
+t_list	*push(t_list *a, t_list **b)
 {
-	if (b)
+	t_list	*tmp;
+
+	if (*b)
 	{
-		b->next = a;
-		a = b;
+		tmp = (*b)->next;
+		(*b)->next = a;
+		a = *b;
+		*b = tmp;
 	}
 	return (a);
 }
 
-t_stack *rotate(t_stack *a)
+t_list	*rotate(t_list *a)
 {
-	t_stack *tmp;
-	t_stack *before_last;
+	t_list	*first;
+	t_list	*last;
 
-	tmp = a;
-	while (a->next)
-	{
-		if (a->next->next)
-		{
-			before_last = a;
-		}
-		a = a->next;
-	}
-	a->next = tmp;
-	before_last->next = NULL;
+	if (!a || !a->next)
+		return (a);
+	first = a;
+	a = a->next;
+	first->next = NULL;
+	last = ft_lstlast(a);
+	ft_lstadd_back(&a, first);
 	return (a);
 }
 
-t_stack	*reverse_rotate(t_stack *a)
+t_list	*reverse_rotate(t_list *a)
 {
-	t_stack *tmp;
+	t_list	*prev;
+	t_list	*last;
 
-	tmp = a;
-	a->next = a;
-	ft_lstadd_back(&a, tmp);
+	if (!a || !a->next)
+		return (a);
+	prev = NULL;
+	last = a;
+	while (last->next)
+	{
+		prev = last;
+		last = last->next;
+	}
+	prev->next = NULL;
+	ft_lstadd_front(&a, last);
 	return (a);
 }
 

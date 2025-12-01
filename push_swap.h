@@ -13,11 +13,6 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include "libft/libft.h"
-
-typedef struct s_stack {
-	int			content;
-	struct s_stack	*next;
-}				t_stack;
+# include "libft/libft.h"
 
 #endif
