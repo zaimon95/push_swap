@@ -14,7 +14,7 @@
 
 t_stack	*swap(t_stack *a)
 {
-	t_stack *tmp;
+	t_stack tmp;
 
 	if(a || a->next)
 	{
@@ -38,8 +38,35 @@ t_stack	*push(t_stack *a, t_stack *b)
 
 t_stack *rotate(t_stack *a)
 {
-	//mettre l'avant dernier comme dernier
-	ft_lstadd_front(&a, ft_lstlast(a));
+	t_stack *tmp;
+	t_stack *before_last;
+
+	tmp = a;
+	while (a->next)
+	{
+		if (a->next->next)
+		{
+			before_last = a;
+		}
+		if(!a->next)
+		{
+			before_last->next = tmp;
+			tmp = before_last;
+			break;
+		}
+		a->next = NULL;
+	}
+	return (a);
+}
+
+t_stack	*reverse_rotate(t_stack *a)
+{
+	t_stack *tmp;
+
+	tmp = a;
+	a->next = a;
+	ft_lstadd_back(&a, tmp);
+	return (a);
 }
 
 /*int main(void)
