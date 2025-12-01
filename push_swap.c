@@ -14,9 +14,9 @@
 
 t_stack	*swap(t_stack *a)
 {
-	t_stack tmp;
+	t_stack *tmp;
 
-	if(a || a->next)
+	if(a && a->next)
 	{
 		tmp = a->next;
 		a->next = a->next->next;
@@ -48,14 +48,10 @@ t_stack *rotate(t_stack *a)
 		{
 			before_last = a;
 		}
-		if(!a->next)
-		{
-			before_last->next = tmp;
-			tmp = before_last;
-			break;
-		}
-		a->next = NULL;
-	}
+    a = a->next;
+  }
+  a->next = tmp;
+  before_last->next = NULL;
 	return (a);
 }
 
