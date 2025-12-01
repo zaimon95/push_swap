@@ -15,4 +15,9 @@
 
 # include "libft/libft.h"
 
+t_list  *swap(t_list *a);
+t_list	*push(t_list *a, t_list **b);
+t_list	*rotate(t_list *a);
+t_list	*reverse_rotate(t_list *a);
+
 #endif
