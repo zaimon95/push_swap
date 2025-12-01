@@ -48,10 +48,10 @@ t_stack *rotate(t_stack *a)
 		{
 			before_last = a;
 		}
-    a = a->next;
-  }
-  a->next = tmp;
-  before_last->next = NULL;
+		a = a->next;
+	}
+	a->next = tmp;
+	before_last->next = NULL;
 	return (a);
 }
 
