@@ -12,6 +12,8 @@
 
 #include "push_swap.h"
 
+//parsing function
+
 int main(int argc, char *argv[])
 {
 	t_list	*a;
@@ -25,7 +27,6 @@ int main(int argc, char *argv[])
 	{
 		while(argv[i])
 		{
-			//malloc
 			a->content = ft_atoi(argv[i]);
 			i++;
 			a = a->next;
