@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-//parsing function
+//parsing function with malloc
 
 int main(int argc, char *argv[])
 {

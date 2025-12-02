@@ -99,8 +99,3 @@ void	operations(t_list *a, t_list *b)
 	if (reverse_rotate(a) && reverse_rotate(b))
 		ft_printf("rrr\n");
 }
-
-/*int main(void)
-{
-	return EXIT_SUCCESS;
-}*/
