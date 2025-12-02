@@ -19,11 +19,13 @@ int main(int argc, char *argv[])
 	size_t	i;
 
 	i = 0;
+	a = NULL;
+	b = NULL;
 	if (argc > 1)
 	{
-		//malloc a et b de taille argc
 		while(argv[i])
 		{
+			//malloc
 			a->content = ft_atoi(argv[i]);
 			i++;
 			a = a->next;
