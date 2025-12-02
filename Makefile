@@ -14,7 +14,8 @@ NAME := push_swap
 
 CC := cc
 
-SRC := 	push_swap.c
+SRC := 	push_swap.c \
+		main.c
 
 CFLAGS := -Wall -Wextra -Werror
 
