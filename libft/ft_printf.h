@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   libftprintf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sla-gran <sla-gran@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/20 16:28:56 by sla-gran          #+#    #+#             */
-/*   Updated: 2025/10/20 16:28:56 by sla-gran         ###   ########.fr       */
+/*   Created: 2025/10/31 10:36:56 by sla-gran          #+#    #+#             */
+/*   Updated: 2025/10/31 10:36:56 by sla-gran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-void	ft_putchar_fd(char c, int fd)
-{
-	if (fd != -1)
-		write(fd, &c, 1);
-}
+# include <stdarg.h>
+# include <unistd.h>
+# include "libft/libft.h"
+
+int	ft_printf(const char *s, ...);
+int	ft_putnbr_hexa(unsigned long n, int upper);
+int	ft_putvoid(void const *p);
+int	ft_putnbr_unsigned(unsigned int n);
+
+#endif

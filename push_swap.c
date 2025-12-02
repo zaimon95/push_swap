@@ -74,6 +74,32 @@ t_list	*reverse_rotate(t_list *a)
 	return (a);
 }
 
+void	operations(t_list *a, t_list *b)
+{
+	if (swap(a))
+		ft_printf("sa\n");
+	if (swap(b))
+		ft_printf("sb\n");
+	if (swap(a) && swap(b))
+		ft_printf("ss\n");
+	if (push(a, &b))
+		ft_printf("pa\n");
+	if (push(b, &a))
+		ft_printf("pb\n");
+	if (rotate(a))
+		ft_printf("ra\n");
+	if (rotate(b))
+		ft_printf("rb\n");
+	if (rotate(a) && rotate(b))
+		ft_printf("rr\n");
+	if (reverse_rotate(a))
+		ft_printf("rra\n");
+	if (reverse_rotate(b))
+		ft_printf("rrb\n");
+	if (reverse_rotate(a) && reverse_rotate(b))
+		ft_printf("rrr\n");
+}
+
 /*int main(void)
 {
 	return EXIT_SUCCESS;

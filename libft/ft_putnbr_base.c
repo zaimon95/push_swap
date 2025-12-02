@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sla-gran <sla-gran@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/01 11:34:25 by sla-gran          #+#    #+#             */
-/*   Updated: 2025/12/01 11:34:25 by sla-gran         ###   ########.fr       */
+/*   Created: 2025/11/04 10:34:34 by sla-gran          #+#    #+#             */
+/*   Updated: 2025/11/04 10:34:34 by sla-gran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "ft_printf.h"
 
-# include "libft/ft_printf.h"
+int	ft_putnbr_hexa(unsigned long n, int upper)
+{
+	char	*symbol;
+	int		len;
 
-t_list  *swap(t_list *a);
-t_list	*push(t_list *a, t_list **b);
-t_list	*rotate(t_list *a);
-t_list	*reverse_rotate(t_list *a);
-
-#endif
+	if (upper)
+		symbol = "0123456789ABCDEF";
+	else
+		symbol = "0123456789abcdef";
+	len = 0;
+	if (n == 0)
+		return (ft_putchar_fd('0', 1));
+	if (n >= 16)
+		len += ft_putnbr_hexa(n / 16, upper);
+	len += ft_putchar_fd(symbol[n % 16], 1);
+	return (len);
+}
