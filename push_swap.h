@@ -14,6 +14,9 @@
 # define PUSH_SWAP_H
 
 # include "libft/ft_printf.h"
+# include <stdlib.h>
+# include <unistd.h>
+
 
 t_list  *swap(t_list *a);
 t_list	*push(t_list *a, t_list **b);
