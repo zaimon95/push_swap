@@ -12,27 +12,11 @@
 
 #include "push_swap.h"
 
-//parsing function with malloc
+t_list	**parsing(int argc, char *argv[])
 
-int main(int argc, char *argv[])
+while (i < argc)
 {
-	t_list	*a;
-	t_list	*b;
-	size_t	i;
-
-	i = 0;
-	a = NULL;
-	b = NULL;
-	if (argc > 1)
-	{
-		while(argv[i])
-		{
-			a->content = ft_atoi(argv[i]);
-			i++;
-			a = a->next;
-		}
-	}
-	else 
-		return EXIT_SUCCESS;
-	return EXIT_SUCCESS;
+	t_list *new = ft_lstnew(argv[i]);
+	ft_lstaddback(&list, new);
+	i++;
 }
