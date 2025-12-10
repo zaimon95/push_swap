@@ -13,33 +13,40 @@
 NAME := push_swap
 
 CC := cc
+CFLAGS := -Wall -Wextra -Werror -MMD -MP
 
-SRC := 	push_swap.c \
-		main.c
+UTILS_DIR = utils
 
-CFLAGS := -Wall -Wextra -Werror
-
+SRC := push_swap.c \
+       parsing.c
 OBJ := $(SRC:.c=.o)
+DEPS := $(OBJ:.o=.d)
 
-all : $(NAME)
+LIBFT_DIR = libft
+LIBFT_A = $(LIBFT_DIR)/libft.a
 
-$(NAME): $(OBJ)
-	make -C libft
-	cp libft/libft.a .
-	mv libft.a $(NAME)
-	ar rcs $(NAME) $(OBJ)
+INCLUDES = -I. -I$(LIBFT_DIR)
 
-$(OBJ): %.o: %.c push_swap.h
-	$(CC) $(CFLAGS) -c $< -o $@ -I libft/
+$(LIBFT_A):
+	$(MAKE) -C $(LIBFT_DIR)
 
-clean :
-	make clean -C libft
+all: $(NAME)
+$(NAME): $(OBJ) $(LIBFT_A)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT_A) -o $(NAME)
+
+%.o: %.c
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+clean:
 	rm -f $(OBJ)
+	$(MAKE) -C $(LIBFT_DIR) clean
 
-fclean : clean
-	make fclean -C libft
+fclean: clean
 	rm -f $(NAME)
+	$(MAKE) -C $(LIBFT_DIR) fclean
 
-re : fclean all
+re: fclean all
 
-.PHONY : all clean fclean re
+.PHONY: all clean fclean re
+
+-include $(DEPS)
