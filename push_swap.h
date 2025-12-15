@@ -14,8 +14,10 @@
 # define PUSH_SWAP_H
 
 # include "libft/ft_printf.h"
+# include "libft/libft/libft.h"
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
 void	sa(t_list **stack_a);
 void	sb(t_list **stack_b);

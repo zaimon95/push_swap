@@ -47,7 +47,7 @@ void	parse_one_arg(char *arg, t_list **stack_a)
 				error();
 			tmp = tmp->next;
 		}
-		lst_add_back(stack_a, lst_new(val));
+		ft_lstadd_back(stack_a, ft_lstnew(val));
 		j++;
 	}
 	free_split(split);

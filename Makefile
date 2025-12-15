@@ -13,40 +13,44 @@
 NAME := push_swap
 
 CC := cc
-CFLAGS := -Wall -Wextra -Werror -MMD -MP
-
-UTILS_DIR = utils
+CFLAGS := -Wall -Wextra -Werror
 
 SRC := push_swap.c \
-       parsing.c
+       parsing.c \
+	   algorithm.c \
+	   edge_case.c \
+	   operations.c \
+	   radix.c \
+	   rotation.c \
+	   sort_small.c \
+	   utils.c
+
 OBJ := $(SRC:.c=.o)
-DEPS := $(OBJ:.o=.d)
 
 LIBFT_DIR = libft
 LIBFT_A = $(LIBFT_DIR)/libft.a
 
 INCLUDES = -I. -I$(LIBFT_DIR)
 
-$(LIBFT_A):
-	$(MAKE) -C $(LIBFT_DIR)
-
 all: $(NAME)
-$(NAME): $(OBJ) $(LIBFT_A)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT_A) -o $(NAME)
+	
+$(NAME): $(OBJ)
+	make -C $(LIBFT_DIR)
+	cp $(LIBFT_DIR)/$(LIBFT) .
+	mv $(LIBFT) $(NAME)
+	ar rcs $(NAME) $(OBJ)
 
-%.o: %.c
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+$(OBJ): %.o: %.c push_swap.h
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@ -I $(LIBFT_DIR)/
 
 clean:
+	make clean -C $(LIBFT_DIR)
 	rm -f $(OBJ)
-	$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean
+	make fclean -C $(LIBFT_DIR)
 	rm -f $(NAME)
-	$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
 .PHONY: all clean fclean re
-
--include $(DEPS)
