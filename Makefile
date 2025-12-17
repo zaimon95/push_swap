@@ -15,33 +15,34 @@ NAME := push_swap
 CC := cc
 CFLAGS := -Wall -Wextra -Werror
 
-SRC := push_swap.c \
+SRC := main.c \
        parsing.c \
-	   algorithm.c \
-	   edge_case.c \
-	   operations.c \
-	   radix.c \
-	   rotation.c \
-	   sort_small.c \
-	   utils.c
+       algorithm.c \
+       edge_case.c \
+       push_swap.c \
+       operations.c \
+       radix.c \
+       rotation.c \
+       sort_small.c \
+       utils.c
 
 OBJ := $(SRC:.c=.o)
 
 LIBFT_DIR = libft
-LIBFT_A = $(LIBFT_DIR)/libft.a
+LIBFT = $(LIBFT_DIR)/libft.a
 
 INCLUDES = -I. -I$(LIBFT_DIR)
 
 all: $(NAME)
-	
-$(NAME): $(OBJ)
-	make -C $(LIBFT_DIR)
-	cp $(LIBFT_DIR)/$(LIBFT) .
-	mv $(LIBFT) $(NAME)
-	ar rcs $(NAME) $(OBJ)
 
-$(OBJ): %.o: %.c push_swap.h
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@ -I $(LIBFT_DIR)/
+$(LIBFT):
+	make -C $(LIBFT_DIR)
+
+$(NAME): $(LIBFT) $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+
+%.o: %.c push_swap.h
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
 	make clean -C $(LIBFT_DIR)

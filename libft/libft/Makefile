@@ -53,7 +53,7 @@ OBJ := $(SRC:.c=.o)
 
 OBJ_BONUS := $(SRC_BONUS:.c=.o)
 
-all : $(NAME)
+all : $(NAME) bonus
 
 bonus : $(OBJ) $(OBJ_BONUS)
 	ar rcs $(NAME) $(OBJ) $(OBJ_BONUS)
