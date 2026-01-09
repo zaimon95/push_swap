@@ -33,3 +33,29 @@
 // 000000000000000000000001 => "1"
 // - => "Error"
 // + => "Error"
+
+int	is_sign(char c)
+{
+	return (c == '+' || c == '-');
+}
+
+void	check_is_number(char *str)
+{
+	int	i;
+	int	ok;
+
+	i = 0;
+	ok = 1;
+	while ((is_sign(str[0]) && ft_isdigit(i + 1)) || ft_isdigit(i))
+	{
+		ok = 0;
+		i++;
+	}
+	if (ok == 0)
+		ft_atoi(str);
+	else
+	{
+		ft_printf("Erreur");
+		return ;
+	}
+}
