@@ -54,7 +54,13 @@ void	check_is_number(char *str)
 		i++;
 	}
 	if (ok == 0)
-		ft_atoi(str);
+	{
+		while (str[i])
+		{
+			ft_atoi(str);
+			//malloc et add_back
+		}
+	}
 	else
 	{
 		ft_printf("Erreur");
