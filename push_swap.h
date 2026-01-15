@@ -30,8 +30,6 @@ void	rr(t_list **stack_a, t_list **stack_b);
 void	rra(t_list **stack_a);
 void	rrb(t_list **stack_b);
 void	rrr(t_list **stack_a, t_list **stack_b);
-int		is_sign(char c);
-void	check_is_number(char *str);
 int		main(int argc, char **argv);
 void	ft_check_args(int argc, char **argv);
 
