@@ -21,7 +21,7 @@ This project focuses on algorithmic efficiency, optimization, and a deep underst
 Clone the repository and compile the project using `make`:
 
 ```bash
-git clone https://github.com/zaimon95/push_swap
+git clone https://github.com/zaimon95/push_swap.git
 cd push_swap
 make
 ```
