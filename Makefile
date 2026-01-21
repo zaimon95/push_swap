@@ -17,14 +17,10 @@ CFLAGS := -Wall -Wextra -Werror
 
 SRC := main.c \
        parsing.c \
-       algorithm.c \
-       edge_case.c \
        push_swap.c \
        operations.c \
-       radix.c \
-       rotation.c \
-       sort_small.c \
-       utils.c
+       rotate.c \
+	   reverse_rotate.c \
 
 OBJ := $(SRC:.c=.o)
 
