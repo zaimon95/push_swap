@@ -79,10 +79,7 @@ Specialized strategies are used for small inputs:
 ### Technical References
 
 * **42 push_swap subject** — Official project specification provided by 42 School
-* **Sorting algorithms overview**: [https://en.wikipedia.org/wiki/Sorting_algorithm](https://en.wikipedia.org/wiki/Sorting_algorithm)
-* **Stack data structure**: [https://en.wikipedia.org/wiki/Stack_(abstract_data_type)](https://en.wikipedia.org/wiki/Stack_%28abstract_data_type%29)
-* **Big-O notation**: [https://en.wikipedia.org/wiki/Big_O_notation](https://en.wikipedia.org/wiki/Big_O_notation)
-* **Radix sort** (commonly adapted for push_swap): [https://en.wikipedia.org/wiki/Radix_sort](https://en.wikipedia.org/wiki/Radix_sort)
+* **Radix sort** (commonly adapted for push_swap): [https://www.geeksforgeeks.org/dsa/radix-sort/]
 
 These resources were used to understand algorithmic complexity, stack manipulation, and sorting strategies applicable under constrained operations.
 
