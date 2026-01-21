@@ -21,6 +21,7 @@ SRC := main.c \
        operations.c \
        rotate.c \
 	   reverse_rotate.c \
+	   algo.c
 
 OBJ := $(SRC:.c=.o)
 
