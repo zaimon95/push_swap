@@ -71,8 +71,3 @@ void	ft_free()
 	while (i >= 0)
 		free(str[i--]);
 }
-
-void	index_stack()
-{
-
-}
