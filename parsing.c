@@ -6,33 +6,9 @@
 /*   By: sla-gran <sla-gran@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 14:05:11 by sla-gran          #+#    #+#             */
-/*   Updated: 2026/01/06 14:05:11 by sla-gran         ###   ########.fr       */
+/*   Updated: 2026/01/29 11:18:20 by sla-gran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// verifier que tout est valide (que des int, pas de doublons, signe valide, pas de liste vide, ...)
-// transformer chaque elem en int
-// ajouter dans le stack
-//
-// #atoi
-// if((is+or-(str(i)) && isdigit(str(i+1))) || isdigit(str(i)))
-// 	atoi(str)
-// else
-// 	print "error" and stop
-// ne pas accepter si 2 signes d'affile
-//
-// #creation stack
-// malloc chaque element de la stack et rajouter a la stack en faisant attention de les mettre dans le bon ordre (add back)
-// avant chaque rajout verifier s'il n'est pas deja dans la liste
-// while (parcourir la liste)
-//	if (pas = a l'element de la liste)
-//		"Erreur" + free
-// addback(element)
-//
-// #overflows
-// 000000000000000000000001 => "1"
-// - => "Error"
-// + => "Error"
 
 #include "push_swap.h"
 
@@ -53,8 +29,10 @@ static int	ft_isnum(char *num)
 	int	i;
 
 	i = 0;
-	if (num[0] == '-')
+	if (num[0] == '-' || num[0] == '+')
 		i++;
+	if (!num[i])
+		return (0);
 	while (num[i])
 	{
 		if (!ft_isdigit(num[i]))
@@ -64,11 +42,36 @@ static int	ft_isnum(char *num)
 	return (1);
 }
 
+static long	ft_atol(const char *str)
+{
+	long	result;
+	int		sign;
+	int		i;
+
+	result = 0;
+	sign = 1;
+	i = 0;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = result * 10 + (str[i] - '0');
+		i++;
+	}
+	return (result * sign);
+}
+
 void	ft_check_args(int argc, char **argv)
 {
 	int		i;
 	long	tmp;
-	char	**args;	
+	char	**args;
 
 	i = 0;
 	if (argc == 2)
@@ -80,7 +83,7 @@ void	ft_check_args(int argc, char **argv)
 	}
 	while (args[i])
 	{
-		tmp = ft_atoi(args[i]);
+		tmp = ft_atol(args[i]);
 		if (!ft_isnum(args[i]))
 			ft_error("Error");
 		if (ft_contains(tmp, args, i))

@@ -6,7 +6,7 @@
 #    By: sla-gran <sla-gran@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/01 11:35:24 by sla-gran          #+#    #+#              #
-#    Updated: 2025/12/01 11:35:24 by sla-gran         ###   ########.fr        #
+#    Updated: 2026/01/29 11:37:43 by sla-gran         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,14 +17,13 @@ CFLAGS := -Wall -Wextra -Werror
 
 SRC := main.c \
        parsing.c \
-       algorithm.c \
-       edge_case.c \
-       push_swap.c \
        operations.c \
+       rotate.c \
+       reverse_rotate.c \
+       simple_sort.c \
        radix.c \
-       rotation.c \
-       sort_small.c \
-       utils.c
+       utils.c \
+			 utils2.c
 
 OBJ := $(SRC:.c=.o)
 
