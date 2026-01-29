@@ -6,7 +6,7 @@
 /*   By: sla-gran <sla-gran@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 11:17:35 by sla-gran          #+#    #+#             */
-/*   Updated: 2026/01/29 11:27:29 by sla-gran         ###   ########.fr       */
+/*   Updated: 2026/01/29 11:49:43 by sla-gran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,29 +57,4 @@ int	is_sorted(t_list **stack)
 		head = head->next;
 	}
 	return (1);
-}
-
-static t_list	*get_next_min(t_list **stack)
-{
-	t_list	*head;
-	t_list	*min;
-	int		has_min;
-
-	min = NULL;
-	has_min = 0;
-	head = *stack;
-	if (head)
-	{
-		while (head)
-		{
-			if ((head->index == -1) && (!has_min
-					|| head->content < min->content))
-			{
-				min = head;
-				has_min = 1;
-			}
-			head = head->next;
-		}
-	}
-	return (min);
 }
