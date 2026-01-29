@@ -6,7 +6,7 @@
 /*   By: sla-gran <sla-gran@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 13:43:41 by sla-gran          #+#    #+#             */
-/*   Updated: 2025/10/20 13:43:41 by sla-gran         ###   ########.fr       */
+/*   Updated: 2026/01/29 11:34:53 by sla-gran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void				ft_lstadd_back(t_list **lst, t_list *new);
 void				ft_lstdelone(t_list *lst, void (*del)(int));
 void				ft_lstclear(t_list **lst, void (*del)(int));
 void				ft_lstiter(t_list *lst, void (*f)(int));
-t_list				*ft_lstmap(t_list *lst, int(*f)(int), void (*del)
+t_list				*ft_lstmap(t_list *lst, int (*f)(int), void (*del)
 						(int));
 
 #endif
