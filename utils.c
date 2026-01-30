@@ -1,17 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
+<<<<<<< HEAD
 /*   simple.c                                           :+:      :+:    :+:   */
+=======
+/*   utils.c                                            :+:      :+:    :+:   */
+>>>>>>> b2c34fc51ccd8ff8f83b397197ae41ad27862ff1
 /*                                                    +:+ +:+         +:+     */
 /*   By: sla-gran <sla-gran@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 11:17:35 by sla-gran          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2026/01/21 11:17:35 by sla-gran         ###   ########.fr       */
+=======
+/*   Updated: 2026/01/29 11:49:43 by sla-gran         ###   ########.fr       */
+>>>>>>> b2c34fc51ccd8ff8f83b397197ae41ad27862ff1
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+<<<<<<< HEAD
 void simple_sort(t_list **stack_a, t_list **stack_b)
 {
 	int	size;
@@ -47,6 +56,27 @@ int	is_sorted(t_list **stack_a)
 }
 
 void	free_stack(t_list stack_a)
+=======
+void	ft_error(char *msg)
+{
+	ft_putstr_fd(msg, 2);
+	ft_putchar_fd('\n', 2);
+	exit(1);
+}
+
+void	ft_free(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	while (i >= 0)
+		free(str[i--]);
+}
+
+void	free_stack(t_list **stack)
+>>>>>>> b2c34fc51ccd8ff8f83b397197ae41ad27862ff1
 {
 	t_list	*head;
 	t_list	*tmp;
@@ -61,6 +91,7 @@ void	free_stack(t_list stack_a)
 	free(stack);
 }
 
+<<<<<<< HEAD
 void	ft_free()
 {
 	int	i;
@@ -70,4 +101,18 @@ void	ft_free()
 		i++;
 	while (i >= 0)
 		free(str[i--]);
+=======
+int	is_sorted(t_list **stack)
+{
+	t_list	*head;
+
+	head = *stack;
+	while (head && head->next)
+	{
+		if (head->content > head->next->content)
+			return (0);
+		head = head->next;
+	}
+	return (1);
+>>>>>>> b2c34fc51ccd8ff8f83b397197ae41ad27862ff1
 }
