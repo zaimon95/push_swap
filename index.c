@@ -14,17 +14,18 @@
 
 static t_list	*get_next_min(t_list **stack_a)
 {
-	t_list	temp;
-	t_list	min;
+	t_list	*temp;
+	t_list	*min;
 	int		has_min;
 
 	has_min = 0;
 	temp = *stack_a;
+	min = NULL;
 	if (temp)
 	{
 		while (temp)
 		{
-			if ((temp->index == -1) && (!has_min || temp->value < min->value))
+			if ((temp->index == -1) && (!has_min || temp->content < min->content))
 			{
 				min = temp;
 				has_min = 1;

@@ -16,22 +16,14 @@ CC := cc
 CFLAGS := -Wall -Wextra -Werror
 
 SRC := main.c \
-       parsing.c \
-<<<<<<< HEAD
-       push_swap.c \
-       operations.c \
-       rotate.c \
-	   reverse_rotate.c \
-	   algo.c
-=======
-       operations.c \
-       rotate.c \
-       reverse_rotate.c \
-       simple_sort.c \
-       radix.c \
-       utils.c \
-			 index.c
->>>>>>> b2c34fc51ccd8ff8f83b397197ae41ad27862ff1
+		parsing.c \
+		operations.c \
+		rotate.c \
+		reverse_rotate.c \
+		simple_sort.c \
+		radix.c \
+		utils.c \
+		index.c
 
 OBJ := $(SRC:.c=.o)
 
