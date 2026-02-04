@@ -25,7 +25,7 @@ static t_list	*get_next_min(t_list **stack_a)
 	{
 		while (temp)
 		{
-			if ((temp->index == -1) && (!has_min || temp->content < min->content))
+			if ((temp->index == -1) && (!has_min || temp->index < min->index))
 			{
 				min = temp;
 				has_min = 1;

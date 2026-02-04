@@ -1,97 +1,109 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sla-gran <sla-gran@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/06 14:05:11 by sla-gran          #+#    #+#             */
-/*   Updated: 2026/01/29 11:18:20 by sla-gran         ###   ########.fr       */
+/*   Created: 2025/12/02 13:39:39 by sla-gran          #+#    #+#             */
+/*   Updated: 2025/12/02 13:39:39 by sla-gran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ft_contains(int num, char **argv, int i)
-{
-	i++;
-	while (argv[i])
-	{
-		if (ft_atoi(argv[i]) == num)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-static int	ft_isnum(char *num)
+int	is_valid_number(char *s)
 {
 	int	i;
 
 	i = 0;
-	if (num[0] == '-' || num[0] == '+')
+	if (s[i] == '+' || s[i] == '-')
 		i++;
-	if (!num[i])
+	if (!s[i])
 		return (0);
-	while (num[i])
+	while (s[i])
 	{
-		if (!ft_isdigit(num[i]))
+		if (!ft_isdigit(s[i]))
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-static long	ft_atol(const char *str)
+int	ft_atoi_safe(char *s)
 {
-	long	result;
+	long	res;
 	int		sign;
-	int		i;
 
-	result = 0;
+	res = 0;
 	sign = 1;
-	i = 0;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	if (*s == '+' || *s == '-')
 	{
-		if (str[i] == '-')
+		if (*s++ == '-')
 			sign = -1;
-		i++;
+		else
+			sign = 1;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	while (*s)
 	{
-		result = result * 10 + (str[i] - '0');
-		i++;
+		res = res * 10 + (*s - '0');
+		if ((sign == 1 && res > 2147483647)
+			|| (sign == -1 && - res < -2147483648))
+			ft_error("Error");
+		s++;
 	}
-	return (result * sign);
+	return ((int)(res * sign));
 }
 
-void	ft_check_args(int argc, char **argv)
+void	free_split(char **split)
 {
-	int		i;
-	long	tmp;
-	char	**args;
+	int	i;
 
+	if (!split)
+		return ;
 	i = 0;
-	if (argc == 2)
-		args = ft_split(argv[1], ' ');
-	else
+	while (split[i])
+		free(split[i++]);
+	free(split);
+}
+
+void	parse_args(int argc, char **argv, t_list **stack_a)
+{
+	int	i;
+
+	i = 1;
+	while (i < argc)
 	{
-		i = 1;
-		args = argv;
-	}
-	while (args[i])
-	{
-		tmp = ft_atol(args[i]);
-		if (!ft_isnum(args[i]))
-			ft_error("Error");
-		if (ft_contains(tmp, args, i))
-			ft_error("Error");
-		if (tmp < -2147483648 || tmp > 2147483647)
-			ft_error("Error");
+		parse_one_arg(argv[i], stack_a);
 		i++;
 	}
-	if (argc == 2)
-		ft_free(args);
+}
+
+void	parse_one_arg(char *arg, t_list **stack_a)
+{
+	int		j;
+	char	**split;
+	t_list	*tmp;
+	int		val;
+
+	if (!arg[0])
+		ft_error("Error");
+	split = ft_split(arg, ' ');
+	j = 0;
+	while (split[j])
+	{
+		if (!is_valid_number(split[j]))
+			ft_error("Error");
+		val = ft_atoi_safe(split[j]);
+		tmp = *stack_a;
+		while (tmp)
+		{
+			if (tmp->content == val)
+				ft_error("Error");
+			tmp = tmp->next;
+		}
+		lst_add_back(stack_a, lst_new(val));
+		j++;
+	}
+	free_split(split);
 }
