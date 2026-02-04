@@ -1,56 +1,54 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: sla-gran <sla-gran@student.s19.be>         +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/12/01 11:35:24 by sla-gran          #+#    #+#              #
-#    Updated: 2026/01/29 11:50:13 by sla-gran         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME := push_swap
 
 CC := cc
-CFLAGS := -Wall -Wextra -Werror
+CFLAGS := -Wall -Wextra -Werror -MMD -MP
 
-SRC := main.c \
-		parsing.c \
-		operations.c \
-		rotate.c \
-		reverse_rotate.c \
-		simple_sort.c \
-		radix.c \
-		utils.c \
-		index.c
+SRCDIR := src
+OBJDIR := build
 
-OBJ := $(SRC:.c=.o)
+SRC := $(SRCDIR)/main.c \
+		$(SRCDIR)/parsing.c \
+		$(SRCDIR)/operations.c \
+		$(SRCDIR)/rotate.c \
+		$(SRCDIR)/reverse_rotate.c \
+		$(SRCDIR)/simple_sort.c \
+		$(SRCDIR)/radix.c \
+		$(SRCDIR)/utils.c \
+		$(SRCDIR)/index.c
+
+OBJ := $(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+
+
+DEPS := $(OBJ:.o=.d)
 
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-INCLUDES = -I. -I$(LIBFT_DIR)
+INCLUDES = -I$(SRCDIR) -I.
 
 all: $(NAME)
 
 $(LIBFT):
-	make -C $(LIBFT_DIR)
+	make -C $(LIBFT_DIR) --no-print-directory
 
 $(NAME): $(LIBFT) $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 
-%.o: %.c push_swap.h
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	make clean -C $(LIBFT_DIR)
-	rm -f $(OBJ)
+	make clean -C $(LIBFT_DIR) --no-print-directory
+
+	rm -rf $(OBJDIR)
 
 fclean: clean
-	make fclean -C $(LIBFT_DIR)
+	make fclean -C $(LIBFT_DIR) --no-print-directory
 	rm -f $(NAME)
 
 re: fclean all
 
 .PHONY: all clean fclean re
+
+-include $(DEPS)

@@ -33,6 +33,8 @@ void	ft_check_args(int argc, char **argv); //changer car fonction pas faite.
 void	ft_error(char *msg);
 void	ft_free(char **str);
 void	free_stack(t_list **stack);
+void	parse_args(int argc, char **argv, t_list **stack_a);
+void	parse_one_arg(char *arg, t_list **stack_a);
 
 void	index_stack(t_list **stack);
 int		is_sorted(t_list **stack);
