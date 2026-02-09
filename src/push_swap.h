@@ -29,7 +29,6 @@ void	rra(t_list **stack_a);
 void	rrb(t_list **stack_b);
 void	rrr(t_list **stack_a, t_list **stack_b);
 
-void	ft_check_args(int argc, char **argv); //changer car fonction pas faite.
 void	ft_error(char *msg);
 void	ft_free(char **str);
 void	free_stack(t_list **stack);
