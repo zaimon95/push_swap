@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sla-gran <sla-gran@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 13:39:39 by sla-gran          #+#    #+#             */
-/*   Updated: 2025/12/02 13:39:39 by sla-gran         ###   ########.fr       */
+/*   Updated: 2026/02/10 00:22:53 by sla-gran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	is_valid_number(char *s)
 	return (1);
 }
 
-int	ft_atoi_safe(char *s)
+long	ft_atoi_safe(char *s)
 {
 	long	res;
 	int		sign;
@@ -41,18 +41,16 @@ int	ft_atoi_safe(char *s)
 	{
 		if (*s++ == '-')
 			sign = -1;
-		else
-			sign = 1;
 	}
 	while (*s)
 	{
 		res = res * 10 + (*s - '0');
 		if ((sign == 1 && res > 2147483647)
-			|| (sign == -1 && - res < -2147483648))
+			|| (sign == -1 && -res < -2147483648))
 			ft_error("Error");
 		s++;
 	}
-	return ((int)(res * sign));
+	return (res * sign);
 }
 
 void	free_split(char **split)
@@ -67,6 +65,48 @@ void	free_split(char **split)
 	free(split);
 }
 
+void	check_duplicate(t_list **stack_a, int val)
+{
+	t_list	*tmp;
+
+	tmp = *stack_a;
+	while (tmp)
+	{
+		if (tmp->content == val)
+		{
+			ft_error("Error");
+		}
+		tmp = tmp->next;
+	}
+}
+
+void	parse_one_arg(char *arg, t_list **stack_a)
+{
+	int		j;
+	char	**split;
+	int		val;
+
+	if (!arg[0])
+		ft_error("Error");
+	split = ft_split(arg, ' ');
+	if (!split || !split[0])
+		ft_error("Error");
+	j = 0;
+	while (split[j])
+	{
+		if (!is_valid_number(split[j]))
+		{
+			free_split(split);
+			ft_error("Error");
+		}
+		val = (int)ft_atoi_safe(split[j]);
+		check_duplicate(stack_a, val);
+		ft_lstadd_back(stack_a, ft_lstnew(val));
+		j++;
+	}
+	free_split(split);
+}
+
 void	parse_args(int argc, char **argv, t_list **stack_a)
 {
 	int	i;
@@ -77,33 +117,4 @@ void	parse_args(int argc, char **argv, t_list **stack_a)
 		parse_one_arg(argv[i], stack_a);
 		i++;
 	}
-}
-
-void	parse_one_arg(char *arg, t_list **stack_a)
-{
-	int		j;
-	char	**split;
-	t_list	*tmp;
-	int		val;
-
-	if (!arg[0])
-		ft_error("Error");
-	split = ft_split(arg, ' ');
-	j = 0;
-	while (split[j])
-	{
-		if (!is_valid_number(split[j]))
-			ft_error("Error");
-		val = ft_atoi_safe(split[j]);
-		tmp = *stack_a;
-		while (tmp)
-		{
-			if (tmp->content == val)
-				ft_error("Error");
-			tmp = tmp->next;
-		}
-		ft_lstadd_back(stack_a, ft_lstnew(val));
-		j++;
-	}
-	free_split(split);
 }
