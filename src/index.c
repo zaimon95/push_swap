@@ -6,7 +6,7 @@
 /*   By: sla-gran <sla-gran@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 10:54:31 by sla-gran          #+#    #+#             */
-/*   Updated: 2026/01/30 10:54:31 by sla-gran         ###   ########.fr       */
+/*   Updated: 2026/02/10 00:09:19 by sla-gran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ static t_list	*get_next_min(t_list **stack_a)
 	{
 		while (temp)
 		{
-			if ((temp->index == -1) && (!has_min || temp->index < min->index))
+			if ((temp->index == -1) && (!has_min || temp->content < min->content))
 			{
 				min = temp;
 				has_min = 1;
 			}
-			temp->next = temp;
+			temp = temp->next;
 		}
 	}
 	return (min);
