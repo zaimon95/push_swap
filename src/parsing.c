@@ -30,29 +30,6 @@ int	is_valid_number(char *s)
 	return (1);
 }
 
-long	ft_atoi_safe(char *s)
-{
-	long	res;
-	int		sign;
-
-	res = 0;
-	sign = 1;
-	if (*s == '+' || *s == '-')
-	{
-		if (*s++ == '-')
-			sign = -1;
-	}
-	while (*s)
-	{
-		res = res * 10 + (*s - '0');
-		if ((sign == 1 && res > 2147483647)
-			|| (sign == -1 && -res < -2147483648))
-			ft_error("Error");
-		s++;
-	}
-	return (res * sign);
-}
-
 void	free_split(char **split)
 {
 	int	i;

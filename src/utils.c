@@ -60,3 +60,26 @@ int	is_sorted(t_list **stack)
 	}
 	return (1);
 }
+
+long	ft_atoi_safe(char *s)
+{
+	long	res;
+	int		sign;
+
+	res = 0;
+	sign = 1;
+	if (*s == '+' || *s == '-')
+	{
+		if (*s++ == '-')
+			sign = -1;
+	}
+	while (*s)
+	{
+		res = res * 10 + (*s - '0');
+		if ((sign == 1 && res > 2147483647)
+			|| (sign == -1 && - res < -2147483648))
+			ft_error("Error");
+		s++;
+	}
+	return (res * sign);
+}
