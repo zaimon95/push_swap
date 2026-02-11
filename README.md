@@ -158,14 +158,6 @@ ARG=$(seq 1 500 | shuf | tr '\n' ' '); ./push_swap $ARG | wc -l
 ./push_swap ""         # Error
 ```
 
-### Automated Testing
-
-You can use community testers like:
-- [push_swap_tester](https://github.com/lmalki-h/push_swap_tester)
-- [push_swap_visualizer](https://github.com/o-reo/push_swap_visualizer)
-
----
-
 ## Implementation Details
 
 ### Memory Management
