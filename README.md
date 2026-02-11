@@ -191,7 +191,7 @@ These resources were used to understand algorithmic complexity, stack manipulati
 
 ### AI Usage Disclosure
 
-AI tools were used strictly as **learning and documentation aids**, not as a source of ready-made solutions.
+AI tools were used strictly as **learning and documentation aids**.
 
 Specifically, AI assistance was used for:
 
