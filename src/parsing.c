@@ -6,7 +6,7 @@
 /*   By: sla-gran <sla-gran@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 13:39:39 by sla-gran          #+#    #+#             */
-/*   Updated: 2026/02/10 00:22:53 by sla-gran         ###   ########.fr       */
+/*   Updated: 2025/12/02 13:39:39 by sla-gran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,29 @@ int	is_valid_number(char *s)
 	return (1);
 }
 
+long	ft_atoi_safe(char *s)
+{
+	long	res;
+	int		sign;
+
+	res = 0;
+	sign = 1;
+	if (*s == '+' || *s == '-')
+	{
+		if (*s++ == '-')
+			sign = -1;
+	}
+	while (*s)
+	{
+		res = res * 10 + (*s - '0');
+		if ((sign == 1 && res > 2147483647)
+			|| (sign == -1 && - res < -2147483648))
+			return (2147483648);
+		s++;
+	}
+	return (res * sign);
+}
+
 void	free_split(char **split)
 {
 	int	i;
@@ -42,43 +65,28 @@ void	free_split(char **split)
 	free(split);
 }
 
-void	check_duplicate(t_list **stack_a, int val)
-{
-	t_list	*tmp;
-
-	tmp = *stack_a;
-	while (tmp)
-	{
-		if (tmp->content == val)
-		{
-			ft_error("Error");
-		}
-		tmp = tmp->next;
-	}
-}
-
 void	parse_one_arg(char *arg, t_list **stack_a)
 {
 	int		j;
 	char	**split;
-	int		val;
+	long	val;
 
 	if (!arg[0])
 		ft_error("Error");
 	split = ft_split(arg, ' ');
 	if (!split || !split[0])
-		ft_error("Error");
+		cleanup_and_error(stack_a, split);
 	j = 0;
 	while (split[j])
 	{
 		if (!is_valid_number(split[j]))
-		{
-			free_split(split);
-			ft_error("Error");
-		}
-		val = (int)ft_atoi_safe(split[j]);
-		check_duplicate(stack_a, val);
-		ft_lstadd_back(stack_a, ft_lstnew(val));
+			cleanup_and_error(stack_a, split);
+		val = ft_atoi_safe(split[j]);
+		if (val < -2147483648 || val > 2147483647)
+			cleanup_and_error(stack_a, split);
+		if (check_duplicate(stack_a, (int)val))
+			cleanup_and_error(stack_a, split);
+		ft_lstadd_back(stack_a, ft_lstnew((int)val));
 		j++;
 	}
 	free_split(split);

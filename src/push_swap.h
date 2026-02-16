@@ -32,9 +32,11 @@ void	rrr(t_list **stack_a, t_list **stack_b);
 void	ft_error(char *msg);
 void	ft_free(char **str);
 void	free_stack(t_list **stack);
+void	free_stack_simple(t_list **stack);
 int		is_valid_number(char *s);
 void	free_split(char **split);
-void	check_duplicate(t_list **stack_a, int val);
+int		check_duplicate(t_list **stack_a, int val);
+void	cleanup_and_error(t_list **stack_a, char **split);
 void	parse_args(int argc, char **argv, t_list **stack_a);
 void	parse_one_arg(char *arg, t_list **stack_a);
 
