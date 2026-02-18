@@ -27,8 +27,6 @@ int	is_valid_number(char *s)
 			return (0);
 		i++;
 	}
-	if (s[0])
-		return (0);
 	return (1);
 }
 
