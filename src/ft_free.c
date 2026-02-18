@@ -12,18 +12,6 @@
 
 #include "push_swap.h"
 
-void	free_split(char **split)
-{
-	int	i;
-
-	if (!split)
-		return ;
-	i = 0;
-	while (split[i])
-		free(split[i++]);
-	free(split);
-}
-
 int	check_duplicate(t_list **stack_a, int val)
 {
 	t_list	*tmp;

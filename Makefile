@@ -14,7 +14,8 @@ SRC := $(SRCDIR)/main.c \
 		$(SRCDIR)/simple_sort.c \
 		$(SRCDIR)/radix.c \
 		$(SRCDIR)/utils.c \
-		$(SRCDIR)/index.c
+		$(SRCDIR)/index.c \
+		$(SRCDIR)/ft_free.c
 
 OBJ := $(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
@@ -35,7 +36,7 @@ $(NAME): $(LIBFT) $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
-	@mkdir -p $(dir $@)
+	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
