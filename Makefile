@@ -1,7 +1,7 @@
 NAME := push_swap
 
 CC := cc
-CFLAGS := -Wall -Wextra -Werror -MMD -MP
+CFLAGS := -Wall -Wextra -Werror -MMD -MP -g
 
 SRCDIR := src
 OBJDIR := build

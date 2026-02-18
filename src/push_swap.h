@@ -30,9 +30,7 @@ void	rrb(t_list **stack_b);
 void	rrr(t_list **stack_a, t_list **stack_b);
 
 void	ft_error(char *msg);
-void	ft_free(char **str);
 void	free_stack(t_list **stack);
-void	free_stack_simple(t_list **stack);
 int		is_valid_number(char *s);
 void	free_split(char **split);
 int		check_duplicate(t_list **stack_a, int val);

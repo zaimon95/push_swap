@@ -32,11 +32,11 @@ int	main(int argc, char **argv)
 	parse_args(argc, argv, &stack_a);
 	if (is_sorted(&stack_a))
 	{
-		free_stack_simple(&stack_a);
+		free_stack(&stack_a);
 		return (0);
 	}
 	index_stack(&stack_a);
 	sort_stack(&stack_a, &stack_b);
-	free_stack_simple(&stack_a);
+	free_stack(&stack_a);
 	return (0);
 }

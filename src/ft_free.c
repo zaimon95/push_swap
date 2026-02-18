@@ -29,6 +29,6 @@ int	check_duplicate(t_list **stack_a, int val)
 void	cleanup_and_error(t_list **stack_a, char **split)
 {
 	free_split(split);
-	free_stack_simple(stack_a);
+	free_stack(stack_a);
 	ft_error("Error");
 }

@@ -27,6 +27,8 @@ int	is_valid_number(char *s)
 			return (0);
 		i++;
 	}
+	if (s[0])
+		return (0);
 	return (1);
 }
 
@@ -72,7 +74,7 @@ void	parse_one_arg(char *arg, t_list **stack_a)
 	long	val;
 
 	if (!arg[0])
-		ft_error("Error");
+		cleanup_and_error(stack_a, NULL);
 	split = ft_split(arg, ' ');
 	if (!split || !split[0])
 		cleanup_and_error(stack_a, split);
